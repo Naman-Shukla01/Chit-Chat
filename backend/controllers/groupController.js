@@ -12,8 +12,11 @@ const joinGroup = async (req, res) => {
 
     if(group.password!==password) return res.json({error: "Invalid group password"})
 
-      // user.groups.push(group._id);
-      // await user.save();
+    if(!user.groups.includes(group._id)){
+      user.groups.push(group._id);
+      await user.save();
+    }
+      
     if(!group.members.includes(userId)){
         
         group.members.push(userId);

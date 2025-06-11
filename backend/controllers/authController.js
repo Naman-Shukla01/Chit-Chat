@@ -9,6 +9,7 @@ const login = async (req, res) => {
     const user = await User.findOne({email});
     if(!user) return res.status(302).json({ message: "User not found"});
     
+    console.log(user)
     if(user.password === password){
         let token = jwt.sign({id: user._id}, process.env.JWT_SECRET)
             await user.save();
