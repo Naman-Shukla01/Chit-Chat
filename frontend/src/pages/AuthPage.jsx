@@ -15,7 +15,7 @@ const AuthPage = ({ user, setUser }) => {
       password: form.password.value,
     };
 
-    const res = await fetch(`${server.dev}/api/auth/signup`, {
+    const res = await fetch(`${server.prod}/api/auth/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,7 +38,7 @@ const AuthPage = ({ user, setUser }) => {
       password: form.password.value,
     };
 
-    const res = await fetch(`${server.dev}/api/auth/login`, {
+    const res = await fetch(`${server.prod}/api/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
