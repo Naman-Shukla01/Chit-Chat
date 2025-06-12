@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const GroupWindow = ({ socket, currentGroup, currentChat, user, messages }) => {
+const GroupWindow = ({ socket, setCurrentGroup, currentGroup, setCurrentChat, currentChat, user, messages }) => {
   const [message, setMessage] = useState("");
   let [showOptions, setShowOptions] = useState(false);
 
@@ -39,17 +39,18 @@ const GroupWindow = ({ socket, currentGroup, currentChat, user, messages }) => {
   
 
   return (
-    <div className="fixed not-sm:w-[100vw]   bg-gray-200">
+    <div className="fixed  bg-gray-200">
       <div
         className="absolute inset-0 w-screen h-screen bg-repeat bg-auto -z-10"
         style={{ backgroundImage: "url('../bg-text.jpeg')" }}
       ></div>
 
-      <div className="h-full w-full flex">
+      <div className="  ">
         {currentGroup && (
-          <div className="">
+          <div className="fixed not-sm:inset-0 not-sm:z-[9999] not-sm:w-screen not-sm:h-screen bg-gray-200">
             <div className="flex justify-between p-1  bg-orange-300">
               <div className="flex ">
+                <i onClick={()=>{setCurrentGroup(null)}} className="sm:hidden fa-regular font-extrabold text-2xl m-2 fa-paper-plane"></i>
                 <h1 className="p-3 px-4 my-1 rounded-full font-bold bg-white text-black h-fit w-fit">
                 {currentGroup.groupname.charAt(0).toUpperCase()}
               </h1>
@@ -115,9 +116,10 @@ const GroupWindow = ({ socket, currentGroup, currentChat, user, messages }) => {
         )}
 
          {currentChat && (
-          <div className="">
+          <div className="fixed not-sm:inset-0 not-sm:z-[9999] not-sm:w-screen not-sm:h-screen bg-gray-200">
             <div className="flex justify-between p-1  bg-orange-300">
               <div className="flex ">
+                <i onClick={()=>{setCurrentChat(null)}} className="sm:hidden m-4 fa-regular font-extrabold text-2xl m-2 fa-paper-plane"></i>
                 <h1 className="p-3 px-4 my-1 rounded-full font-bold bg-white text-black h-fit w-fit">
                 {currentChat.username.charAt(0).toUpperCase()}
               </h1>
@@ -161,7 +163,7 @@ const GroupWindow = ({ socket, currentGroup, currentChat, user, messages }) => {
               
             </div>
               
-            <div className=" fixed  bottom-0">
+            <div className=" fixed  bottom-0 ">
               <form onSubmit={sendPersonalMessage} className="flex p-4 ">
                 <input
                   type="text"

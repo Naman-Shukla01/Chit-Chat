@@ -72,7 +72,7 @@ const HomePage = ({ user, groups, setGroups, chats, setChats }) => {
       </div>
       <div>
         
-        <GroupWindow socket={socket} currentGroup={currentGroup} currentChat={currentChat} user={user} messages={messages} />
+        <GroupWindow socket={socket} setCurrentGroup={setCurrentGroup} currentGroup={currentGroup} setCurrentChat={setCurrentChat} currentChat={currentChat} user={user} messages={messages} />
       </div>
       
     </div>

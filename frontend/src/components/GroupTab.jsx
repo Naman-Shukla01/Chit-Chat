@@ -17,6 +17,7 @@ const GroupTab = ({
   let [createGroupClicked, setCreateGroupClicked] = useState(false);
   let [createChatClicked, setCreateChatClicked] = useState(false);
   const [chatIsOpen, setChatIsOpen] = useState(true);
+  let [showOptions, setShowOptions] = useState(false);
 
   const createChat = async (e) => {
     e.preventDefault();
@@ -79,9 +80,10 @@ const GroupTab = ({
       </div>
       <div className="flex justify-between ">
         <h1 className="text-2xl font-bold mt-2">Chats</h1>
-          <div onClick={()=>setCreateChatClicked(!createChatClicked)}>
-          Create chat
-        </div>
+          <div>
+                  <i onClick={()=>setShowOptions(!showOptions)} class="m-3  text-2xl fa-solid fa-ellipsis-vertical"></i>
+              
+              </div>
         {createGroupClicked && (
           <form
             className="absolute bg-gray-200 flex flex-col w-fit z-10 p-5 not-sm:p-1 border rounded-2xl"
@@ -117,7 +119,17 @@ const GroupTab = ({
           </form>
         )}
       </div>
-      <div className="fixed flex not-md:flex-col justify-between bottom-5 align-middle text-lg font-bold">
+      {showOptions && 
+      <div className="relative flex not-md:flex-col justify-between  align-middle text-lg font-bold">
+        <div onClick={()=>setCreateChatClicked(!createChatClicked)}  className="  flex hover:bg-yellow-100 rounded-2xl">
+          <i
+            
+            className=" fa-solid fa-plus text-xl mt-3 ml-2"
+          ></i>
+          <div className="text-lg font-bold m-2" >
+          Create chat
+        </div>
+        </div>
         <div
           className="  flex hover:bg-yellow-100 rounded-2xl"
           onClick={() => setCreateGroupClicked(!createGroupClicked)}
@@ -138,7 +150,7 @@ const GroupTab = ({
           <p className="text-lg  pt-0.5"> Join Group</p>
         </div>
       </div>
-
+}
       {joinGroupClicked && (
         <form
           className="absolute bg-gray-200 not-sm:p-1 flex flex-col z-10 p-5 border rounded-2xl"
