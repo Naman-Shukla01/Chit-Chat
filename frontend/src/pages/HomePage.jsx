@@ -4,11 +4,11 @@ import server from "../environment";
 import GroupTab from ".././components/GroupTab"
 import GroupWindow from ".././components/GroupWindow";
 
-const HomePage = ({ user, groups, setGroups }) => {
+const HomePage = ({ user, groups, setGroups, chats, setChats }) => {
   const [currentGroup, setCurrentGroup] = useState(null);
   const [messages, setMessages] = useState([]);
   const [socket, setSocket] = useState(null); 
-
+  const [currentChat, setCurrentChat] = useState(null);
 
   useEffect(() => {
     const newSocket = io(server.dev);
@@ -21,11 +21,22 @@ const HomePage = ({ user, groups, setGroups }) => {
 
 
   useEffect(() => {
-    if (!socket || !currentGroup) return;
+    if (!socket || (!currentGroup && !currentChat)) return;
 
-    const groupId = currentGroup._id;
+    if(currentGroup){
+        const groupId = currentGroup._id;
 
     socket.emit("join-group", { groupId });
+    }
+
+    if(currentChat){
+      const receiverId = currentChat._id;
+      const senderId = user.id;
+
+      socket.emit("join-chat", { senderId , receiverId})
+
+    }
+    
 
     socket.on("receive-message", (data) => {
       console.log("Received message:", data);
@@ -41,7 +52,7 @@ const HomePage = ({ user, groups, setGroups }) => {
     return () => {
       socket.off("receive-message");
     };
-  }, [socket, currentGroup]);
+  }, [socket, currentGroup, currentChat]);
 
   return (
     <div className="flex">
@@ -53,11 +64,15 @@ const HomePage = ({ user, groups, setGroups }) => {
           setGroups={setGroups}
           currentGroup={currentGroup}
           setCurrentGroup={setCurrentGroup}
+          currentChat={currentChat}
+          setCurrentChat={setCurrentChat}
+          setChats={setChats}
+          chats={chats}
         />
       </div>
       <div>
         
-        <GroupWindow socket={socket} currentGroup={currentGroup} user={user} messages={messages}/>
+        <GroupWindow socket={socket} currentGroup={currentGroup} currentChat={currentChat} user={user} messages={messages} />
       </div>
       
     </div>

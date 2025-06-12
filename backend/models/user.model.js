@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import Group from "./group.model.js";
+import PersonalMessage from "./personalMessages.model.js";
 
 const userSchema = new Schema({
     username: {
@@ -18,7 +19,17 @@ const userSchema = new Schema({
     groups: [{
         type: Schema.Types.ObjectId,
         ref: "Group"
+    }],
+    contacts: [{
+         type: Schema.Types.ObjectId,
+        ref: "User",
+    }],
+    personalMessage : 
+        [{
+        type: Schema.Types.ObjectId,
+        ref: "Message"
     }]
+    
 });
 
 const User = mongoose.model("User", userSchema);

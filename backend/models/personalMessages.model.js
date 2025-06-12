@@ -2,7 +2,7 @@ import mongoose, { Schema } from "mongoose";
 import User from "./user.model.js";
 import Group from "./group.model.js";
 
-const messageSchema = new Schema({
+const personalMessageSchema = new Schema({
     content: {
         required: true,
         type: String
@@ -14,10 +14,6 @@ const messageSchema = new Schema({
     receiver:{
         type: Schema.Types.ObjectId,
         ref: "User",
-    },
-    group: {
-        type: Schema.Types.ObjectId,
-        ref: "Group"
     }, 
     sentAt: {
         type: Date,
@@ -25,6 +21,6 @@ const messageSchema = new Schema({
     }
 });
 
-const Message = mongoose.model("Message", messageSchema);
+const PersonalMessage = mongoose.model("PersonalMessage", personalMessageSchema);
 
-export default Message;
+export default PersonalMessage;
