@@ -26,13 +26,16 @@ async function main() {
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: "https://chit-chat-nu32.onrender.com",
+    credentials: true
+}));
 app.use(express.json());
 
 const server = createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "*",
+        origin: "https://chit-chat-nu32.onrender.com",
         methods: ["GET", "POST", "DELETE"],
         credentials: true
     },
