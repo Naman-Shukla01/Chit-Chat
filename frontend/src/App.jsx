@@ -26,13 +26,13 @@ function App() {
           setLoading(false);
           return;
         }
-        const groupResponse = await axios.get(`${server.dev}/api/group`, {
+        const groupResponse = await axios.get(`${server.prod}/api/group`, {
           headers: {
             Authorization: token,
           },
         });
 
-        const chatResponse = await axios.get(`${server.dev}/api/chat`, {
+        const chatResponse = await axios.get(`${server.prod}/api/chat`, {
           headers: {
             Authorization: token,
           },
