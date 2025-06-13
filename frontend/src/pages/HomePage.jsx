@@ -11,7 +11,10 @@ const HomePage = ({ user, groups, setGroups, chats, setChats }) => {
   const [currentChat, setCurrentChat] = useState(null);
 
   useEffect(() => {
-    const newSocket = io(server.prod);
+    const newSocket = io(server.prod,{
+  transports: ["websocket"],         
+  withCredentials: true,             
+});
     setSocket(newSocket);
 
     return () => {
