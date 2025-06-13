@@ -23,11 +23,11 @@ const GroupWindow = ({ socket, setCurrentGroup, currentGroup, setCurrentChat, cu
     const content = e.target.message.value;
     if (content.length === 0) return;
     
-    console.log("sender:",user.id,"receiver:",currentChat._id)
+    console.log("sender:",user._id,"receiver:",currentChat._id)
     socket.emit("send-personal-message", {
       receiver: currentChat._id,
       message: content,
-      sender: user.id,
+      sender: user._id,
     });
 
     setMessage("");
