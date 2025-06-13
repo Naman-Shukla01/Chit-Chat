@@ -23,6 +23,7 @@ const HomePage = ({ user, groups, setGroups, chats, setChats }) => {
   useEffect(() => {
     if (!socket || (!currentGroup && !currentChat)) return;
 
+    console.log(user)
     if(currentGroup){
         const groupId = currentGroup._id;
 
