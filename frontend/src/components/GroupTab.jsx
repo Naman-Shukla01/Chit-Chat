@@ -24,7 +24,7 @@ const GroupTab = ({
 
     const res = await axios.post(`${server.prod}/api/chat/create`, {
       userId: e.target.name.value,
-      senderId: user.id,
+      senderId: user._id,
     });
 
     console.log("created chat : ", res);
@@ -50,7 +50,7 @@ const GroupTab = ({
     const res = await axios.post(`${server.prod}/api/group/create`, {
       name: e.target.name.value,
       password: e.target.password.value,
-      userId: user.id,
+      userId: user._id,
     });
     console.log(res);
     setGroups((prevGroups) => [...prevGroups, res.data]);
@@ -63,14 +63,13 @@ const GroupTab = ({
     const res = await axios.post(`${server.prod}/api/group/join`, {
       name: e.target.name.value,
       password: e.target.password.value,
-      userId: user.id,
+      userId: user._id,
     });
     console.log(res);
     setGroups((prevGroups) => [...prevGroups, res.data.group]);
     setJoinGroupClicked(!joinGroupClicked);
   };
 
-  console.log(chats);
 
   return (
     <div className="bg-orange-300 cursor-pointer p-5 not-sm:p-2 overflow-y-auto border-0 border-r-gray-600 md:w-[40vw] sm:w-[30vw] not-sm:w-[100vw] h-[100vh]">

@@ -12,7 +12,7 @@ const GroupWindow = ({ socket, setCurrentGroup, currentGroup, setCurrentChat, cu
     socket.emit("send-message", {
       groupId: currentGroup._id,
       message: content,
-      sender: user.id,
+      sender: user._id,
     });
 
     setMessage("");
@@ -69,7 +69,7 @@ const GroupWindow = ({ socket, setCurrentGroup, currentGroup, setCurrentChat, cu
 
             <div className="p-4  md:w-[60vw] sm:w-[70vw] pb-32 h-[85vh] overflow-y-auto space-y-3">
               {messages.map((msg) => {
-                const isSender = msg.sender?._id === user.id;
+                const isSender = msg.sender?._id === user._id;
                 return (
                   <div
                     key={msg._id}
@@ -138,7 +138,7 @@ const GroupWindow = ({ socket, setCurrentGroup, currentGroup, setCurrentChat, cu
 
             <div className="p-4  md:w-[60vw] sm:w-[70vw] pb-32 h-[85vh] overflow-y-auto space-y-3">
               {messages.map((msg) => {
-                const isSender = msg.sender?._id === user.id;
+                const isSender = msg.sender?._id === user._id;
                 return (
                   <div
                     key={msg._id}
