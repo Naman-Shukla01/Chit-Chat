@@ -23,7 +23,7 @@ const HomePage = ({ user, groups, setGroups, chats, setChats }) => {
   useEffect(() => {
     if (!socket || (!currentGroup && !currentChat)) return;
 
-    console.log(user)
+    console.log("User: ",user)
     if(currentGroup){
         const groupId = currentGroup._id;
 
@@ -32,7 +32,7 @@ const HomePage = ({ user, groups, setGroups, chats, setChats }) => {
 
     if(currentChat){
       const receiverId = currentChat._id;
-      const senderId = user.id;
+      const senderId = user._id;
 
       socket.emit("join-chat", { senderId , receiverId})
 
