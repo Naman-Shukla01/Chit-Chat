@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom"
 const LandingPage = ({user}) => {
   const navigate = useNavigate();
 
-  if(user) navigate("/api/home")
+  // if(user) navigate("/api/home")
   return (
     <div className='relative flex flex-col items-center justify-center'>
       <div><img className="absolute h-20 w-20 left-10" src=".././login-page.jpg" alt="" /></div>
