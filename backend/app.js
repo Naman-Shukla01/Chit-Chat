@@ -97,7 +97,7 @@ io.on("connection", (Socket)=>{
         await newMessage.save();
         await newMessage.populate("sender")
          console.log(Array.isArray(newMessage))
-         const roomId = [sender.id, receiver.id].sort().join("-"); 
+         const roomId = [sender, receiver].sort().join("-"); 
         Socket.join(roomId);
         io.to(roomId).emit("receive-message", newMessage);
     })
